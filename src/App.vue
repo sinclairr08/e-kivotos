@@ -1,16 +1,18 @@
 <template>
-  <MainPage />
+  <HeaderComponent />
+  <div class="my-12">
+    <router-view />
+  </div>
   <FooterComponent />
 </template>
 
 <script>
-import MainPage from "./components/MainPage";
+import HeaderComponent from "./components/HeaderComponent";
 import FooterComponent from "./components/FooterComponent";
-
 export default {
   name: "App",
   components: {
-    MainPage,
+    HeaderComponent,
     FooterComponent,
   },
 };

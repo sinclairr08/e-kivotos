@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full absolute bottom-0 p-3 flex flex-col text-center text-xs bg-cyan-400 text-white"
+    class="w-full fixed bottom-0 p-3 flex flex-col text-center text-xs bg-cyan-400 text-white"
   >
     <span>© 2023. e-kivotos </span>
     <span>
