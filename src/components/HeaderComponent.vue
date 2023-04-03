@@ -4,5 +4,6 @@
   >
     <router-link to="/" class="mx-4">Home</router-link>
     <router-link to="/cost" class="mx-4">Cost</router-link>
+    <router-link to="/versions" class="mx-4">Versions</router-link>
   </div>
 </template>
