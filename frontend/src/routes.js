@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import CostPage from "../components/CostPage";
-import MainPage from "../components/MainPage";
-import VersionPage from "../components/VersionPage";
+import CostPage from "./components/CostPage.vue";
+import MainPage from "./components/MainPage.vue";
+import VersionPage from "./components/VersionPage.vue";
 
 export default new createRouter({
   history: createWebHashHistory("/e-kivotos"),
