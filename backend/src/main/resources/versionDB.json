@@ -1,0 +1,41 @@
+[
+  {
+    "versionString": "0.1.0",
+    "releaseDate": "2023-02-28",
+    "updates": [
+      "인게임 코스트 바 구현",
+      "배속, 자동 스킬 사용, 수동 스킬 사용, 코스트 회복 및 사용 기능 구현"
+    ]
+  },
+  {
+    "versionString": "0.2.0",
+    "releaseDate": "2023-04-01",
+    "updates": [
+      "라우팅 기능 구현, 헤더 추가",
+      "main 페이지 및 cost 페이지 분리",
+      "이름 변경 (mollu-simulator -> e-kivotos)"
+    ]
+  },
+  {
+    "versionString": "1.0.0",
+    "releaseDate": "2023-04-03",
+    "updates": [
+      "백엔드 서버 추가",
+      "version 페이지 및 API 추가"
+    ]
+  },
+  {
+    "versionString": "1.0.1",
+    "releaseDate": "2023-04-04",
+    "updates": [
+      "404 문제 임시 해결"
+    ]
+  },
+  {
+    "versionString": "1.0.2",
+    "releaseDate": "2023-04-12",
+    "updates": [
+      "메인 페이지 링크 추가"
+    ]
+  }
+]
