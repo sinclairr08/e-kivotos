@@ -3,14 +3,14 @@
     <div
       class="border-t-2 border-purple-900 p-4"
       v-for="version in versions"
-      :key="version.version"
+      :key="version.versionString"
     >
       <div>
-        <span>Ver. {{ version.version }}</span>
+        <span>Ver. {{ version.versionString }}</span>
         <span class="ml-4 text-xs">{{ version.releaseDate }}</span>
       </div>
-      <li v-for="text in version.text" :key="text" class="ml-2">
-        {{ text }}
+      <li v-for="update in version.updates" :key="update" class="ml-2">
+        {{ update }}
       </li>
     </div>
   </div>
