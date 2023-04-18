@@ -22,10 +22,10 @@ cp $REPOSITORY/$PROJECT_NAME/$BACKEND/build/libs/*.jar $REPOSITORY
 
 echo "> PID 확인"
 
-CURRENT_PID=${pgrep -f ${PROJECT_NAME}.*.jar}
+CURRENT_PID=${pgrep -f ${$BACKEND}.*.jar}
 
 if [ -z "$CURRENT_PID" ]; then
-  echo "> 구동 중인 애플리키에션 없음"
+  echo "> 구동 중인 애플리케이션 없음"
 else
   echo "> kill $CURRENT_PID"
   kill -15 $CURRENT_PID
