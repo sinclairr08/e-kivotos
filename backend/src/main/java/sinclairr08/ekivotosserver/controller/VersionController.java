@@ -13,19 +13,17 @@ import java.util.List;
 @CrossOrigin(origins = {"https://sinclairr08.github.io", "http://localhost:23908"})
 @Controller
 public class VersionController {
-    private VersionRepository versionRepository;
-    private List<Version> versions;
+    private final VersionRepository versionRepository;
 
     @Autowired
     public VersionController(VersionRepository versionRepository) {
         this.versionRepository = versionRepository;
-        this.versions = versionRepository.findAll();
     }
 
     @GetMapping(value = "/versions")
     @ResponseBody
     public List<Version> versionJson() {
-        return versions;
+        return versionRepository.findAll();
     }
 
 }
