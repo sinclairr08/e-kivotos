@@ -19,7 +19,7 @@ public class StaticVersionRepository implements VersionRepository {
         this.parser = new JSONParser();
 
         ClassPathResource resource = new ClassPathResource("versionDB.json");
-        Reader reader = new FileReader(resource.getFile());
+        Reader reader = new InputStreamReader(resource.getInputStream());
 
         this.jsonArray = (JSONArray) parser.parse(reader);
     }
