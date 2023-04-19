@@ -19,8 +19,6 @@
 - MollBTI 페이지
   - 학생 성향 정보를 활용해 MBTI와 같이 나와 가장 비슷한 학생을 알려주는 페이지
   - 설문을 입력으로 받아서 서버에 기록해보기?
-- URL `#` 문제 해결
-  - 서버에서 정적 파일 넘기는 방식으로 변경
 - Vuex 대신 global 사용해 보는 것 비교해 보기
 
 ## Backend
@@ -36,8 +34,6 @@
 ## Project
 
 - AWS 배포
-  - Github action 이용해 자동 배포
-  - S3, EC2, CodeDeploy 이용하기
-  - https 인증서 "주의 요함" 문제가 해결되는지 확인
-  - 프론트엔드 배포도 github pages말고 AWS로 해 보기
-- Domain Name 적용하기
+  - Github action + S3, CodeDeploy 이용해 자동 배포
+  - Route53 이용해 https 적용
+- Domain Name 구매 및 적용하기
