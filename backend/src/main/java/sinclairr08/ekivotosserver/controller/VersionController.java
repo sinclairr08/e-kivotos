@@ -9,7 +9,6 @@ import sinclairr08.ekivotosserver.version.VersionRepository;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
 public class VersionController {
     private final VersionRepository versionRepository;
@@ -19,7 +18,7 @@ public class VersionController {
         this.versionRepository = versionRepository;
     }
 
-    @GetMapping(value = "/versions")
+    @GetMapping(value = "/versionApi")
     public List<Version> versionJson() {
         return versionRepository.findAll();
     }

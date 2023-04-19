@@ -28,7 +28,7 @@ const message = ref("Loading...");
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get(`${process.env.VUE_APP_API_URL}/versions`);
+    const { data } = await axios.get(`versionApi`);
     versions.value = data;
     message.value = "";
   } catch (err) {

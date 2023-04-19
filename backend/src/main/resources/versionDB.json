@@ -44,5 +44,14 @@
     "updates": [
       "백엔드 서버 AWS 배포"
     ]
+  },
+  {
+    "versionString": "1.0.4",
+    "releaseDate": "2023-04-19",
+    "updates": [
+      "AWS로 배포 방식을 변경하면서 URL 변경",
+      "404 페이지 및 기능 추가",
+      "https 주의 요함 문제 일시적 해결"
+    ]
   }
 ]
