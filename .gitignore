@@ -64,5 +64,12 @@ out/
 ### VS Code ###
 .vscode/
 
-## Else
-application.yml
+## Configuration
+application-local.yml
+application-db.yml
+
+## Legacy
+legacy/
+
+## sql
+sql/

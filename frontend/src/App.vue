@@ -1,6 +1,6 @@
 <template>
   <HeaderComponent />
-  <div class="my-12">
+  <div class="mt-12 mb-20">
     <router-view />
   </div>
   <FooterComponent />
