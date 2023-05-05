@@ -42,8 +42,8 @@ const sites = [
     imgSrc: generateUrl("jp"),
   },
   {
-    url: "https://boatneck-telescope-7e9.notion.site/2df4987277984be9a07ec1efa27279e3",
-    name: "블루아카 공략집",
+    url: "https://molunote.oopy.io/",
+    name: "몰루노트",
     imgSrc: generateUrl("info"),
   },
   {
