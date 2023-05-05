@@ -22,9 +22,11 @@
 <script setup>
 import axios from "axios";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 const versions = ref({});
 const message = ref("Loading...");
+const router = useRouter();
 
 onMounted(async () => {
   try {
@@ -32,7 +34,11 @@ onMounted(async () => {
     versions.value = data;
     message.value = "";
   } catch (err) {
-    message.value = err;
+    if (err.response.status === 500) {
+      await router.push("/500");
+    } else {
+      message.value = err.response.status.toString();
+    }
   }
 });
 </script>
