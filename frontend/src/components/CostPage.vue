@@ -1,52 +1,66 @@
 <template>
-  <div class="flex justify-center mt-16">
+  <div class="flex flex-col items-center justify-center mt-16">
     <div class="flex items-center justify-center">
       <span
         class="text-white text-lg bg-sky-700 font-bold px-4 py-2 rounded-full"
         >{{ cost }}</span
       >
-    </div>
-    <div class="flex flex-col items-center justify-center">
-      <div class="flex space-x-2 mt-2">
-        <CharacterCard
-          v-for="(card, i) in cards"
-          :key="card.name"
-          :idx="i"
-          v-bind="card"
-        />
+      <div class="flex flex-col items-center justify-center">
+        <div class="flex space-x-2 mt-2">
+          <CharacterCard
+            v-for="(card, i) in cards"
+            :key="card.name"
+            :idx="i"
+            v-bind="card"
+          />
+        </div>
+        <div class="mt-2 h-6 w-[500px] relative bg-sky-900">
+          <div
+            class="absolute h-6 bg-sky-400"
+            :style="[`width: ${percentage}`]"
+          ></div>
+          <VerticalLine v-for="i in constIdx" :key="i" :idx="i" />
+        </div>
       </div>
-      <div class="mt-2 h-6 w-[500px] relative bg-sky-900">
-        <div
-          class="absolute h-6 bg-sky-400"
-          :style="[`width: ${percentage}`]"
-        ></div>
-        <VerticalLine v-for="i in constIdx" :key="i" :idx="i" />
+      <div class="flex flex-col justify-center ml-2 mt-2">
+        <button
+          :class="
+            speedButtonStyle + 'w-24 rounded text-lg py-0.5 text-center mb-0.5'
+          "
+          @click="toggleSpeed"
+        >
+          {{ speedButtonString }}
+        </button>
+        <button
+          :class="
+            autoButtonStyle +
+            'w-24 text-center rounded text-lg py-0.5 mt-0.5 font-bold'
+          "
+          @click="toggleAuto"
+        >
+          AUTO
+        </button>
       </div>
     </div>
-    <div class="flex flex-col justify-center ml-2 mt-2">
-      <button
-        :class="
-          speedButtonStyle + 'w-24 rounded text-lg py-0.5 text-center mb-0.5'
-        "
-        @click="toggleSpeed"
-      >
-        {{ speedButtonString }}
-      </button>
-      <button
-        :class="
-          autoButtonStyle +
-          'w-24 text-center rounded text-lg py-0.5 mt-0.5 font-bold'
-        "
-        @click="toggleAuto"
-      >
-        AUTO
-      </button>
-    </div>
-  </div>
+    <button class="mt-8" @click="startGame">시작</button>
+    <button class="mt-2" @click="stopGame">일시 정지</button>
 
-  <div class="mt-8 flex flex-col items-center">
-    <button @click="startGame">Start</button>
-    <button @click="stopGame">Stop</button>
+    <div class="grid grid-cols-10 mt-6">
+      <button
+        v-for="(s, i) in student"
+        :key="s.name"
+        :class="
+          (s.clicked ? 'text-red-600' : 'text-gray-900') +
+          ' flex items-center justify-center text-xs m-0.5 border-2 border-gray-900 rounded-md px-0.5'
+        "
+        @click="clickStudent(i)"
+      >
+        {{ s.name }}
+      </button>
+    </div>
+    <button @click="selectStudent">학생 선택</button>
+
+    <div class="mt-4">{{ message }}</div>
   </div>
 </template>
 
@@ -55,22 +69,29 @@ import VerticalLine from "./VerticalLine";
 import CharacterCard from "./CharacterCard";
 import { ADD_COST, CLICK_CARD, MAX_VALUE, UNIT_VALUE } from "../store.js";
 import { useStore } from "vuex";
-import { computed, ref } from "vue";
+import { computed, onBeforeMount, ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
 
 const { state, commit } = useStore();
+const router = useRouter();
 const speedFactor = [0.2, 1.0, 1.3, 1.7];
 const regen = 420;
 const constIdx = [...Array(11).keys()];
 
 let timeInterval;
+const student = ref([]);
 const speed = ref(1);
 const isAuto = ref(false);
 const autoIdx = ref(0);
+const message = ref("Loading...");
 
 //let isBullet = false;
 
 const cards = computed(() => {
-  return state.orders.slice(0, 3).map((i) => state.cards[i]);
+  return state.cards.length == 6
+    ? state.orders.slice(0, 3).map((i) => state.cards[i])
+    : [];
 });
 
 const cost = computed(() => {
@@ -98,6 +119,23 @@ const autoButtonStyle = computed(() => {
   return "bg-gray-400 text-gray-700 ";
 });
 
+const clickStudent = (idx) => {
+  student.value[idx] = {
+    ...student.value[idx],
+    clicked: !student.value[idx].clicked,
+  };
+};
+
+const selectStudent = () => {
+  let selected = student.value.filter((s) => s.clicked === true);
+  if (selected.length != 6) {
+    message.value = "6명을 선택하세요";
+    state.cards = [];
+    return;
+  }
+  state.cards = selected;
+};
+
 const startGame = () => {
   if (timeInterval) stopGame();
 
@@ -109,7 +147,7 @@ const startGame = () => {
         state.cards[state.orders[autoIdx.value]].cost * UNIT_VALUE
     ) {
       commit(CLICK_CARD, autoIdx.value);
-      console.log(state.cards[state.orders[autoIdx.value]].cost);
+      // console.log(state.cards[state.orders[autoIdx.value]].cost);
       autoIdx.value =
         autoIdx.value == 2 ? autoIdx.value - 2 : autoIdx.value + 1;
     }
@@ -130,6 +168,20 @@ const toggleAuto = () => {
     autoIdx.value = 0;
   }
 };
+
+onBeforeMount(async () => {
+  try {
+    const { data } = await axios.get("/api/students/cost");
+    student.value = data;
+    message.value = "";
+  } catch (err) {
+    if (err.response.status === 500) {
+      await router.push("/500");
+    } else {
+      message.value = err.response.status.toString();
+    }
+  }
+});
 
 // let prevTime, curTime;
 //prevTime = new Date();

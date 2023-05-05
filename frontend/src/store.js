@@ -10,14 +10,7 @@ export const CLICK_CARD = "CLICK_CARD";
 export default createStore({
   state: {
     costValue: 0.0,
-    cards: [
-      { name: "세리카", cost: 2 },
-      { name: "이오리", cost: 3 },
-      { name: "아루", cost: 4 },
-      { name: "마키", cost: 5 },
-      { name: "이로하", cost: 6 },
-      { name: "히나", cost: 7 },
-    ],
+    cards: [],
     orders: [...Array(6).keys()],
   },
   mutations: {
