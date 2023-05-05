@@ -18,21 +18,8 @@ public class VersionController {
     private final VersionService versionService;
 
     @GetMapping(value = "/api/versions")
-    public List<VersionDto> versionJson() {
+    public List<VersionDto> versions() {
         return versionService.findAll();
-    }
-
-    @PostMapping(value = "/api/versions")
-    public String save(@RequestBody VersionDto versionDto) {
-        log.info(versionDto.getVersionString());
-        log.info(versionDto.getReleaseDate());
-
-        for (String update: versionDto.getUpdates()) {
-            log.info(update);
-        }
-
-        versionService.save(versionDto);
-        return "ok";
     }
 
 }

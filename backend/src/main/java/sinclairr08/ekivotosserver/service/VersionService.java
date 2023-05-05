@@ -17,17 +17,7 @@ public class VersionService {
     private final VersionRepository versionRepository;
 
     private List<String> parseUpdates(String s) {
-        return Arrays.asList(s.split("\n"));
-    }
-
-    private String sumUpdates(List<String> updates) {
-        StringBuilder sb = new StringBuilder();
-        for (String update: updates) {
-            sb.append(update);
-            sb.append("\n");
-        }
-
-        return sb.toString();
+        return Arrays.asList(s.split("@"));
     }
 
     @Transactional(readOnly = true)
@@ -42,10 +32,4 @@ public class VersionService {
         return results;
     }
 
-    @Transactional
-    public void save(VersionDto versionDto) {
-        Version version = new Version();
-        version.setVersion(versionDto.getVersionString(), versionDto.getReleaseDate(), sumUpdates(versionDto.getUpdates()));
-        versionRepository.save(version);
-    }
 }

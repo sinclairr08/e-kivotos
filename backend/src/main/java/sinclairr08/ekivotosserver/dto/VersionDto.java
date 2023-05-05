@@ -1,11 +1,10 @@
 package sinclairr08.ekivotosserver.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
-@Getter @Setter
+@Getter
 public class VersionDto {
     private String versionString;
     private String releaseDate;
