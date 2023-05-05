@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'sinclairr08'
-version = '1.0.5'
+version = '1.1.0'
 sourceCompatibility = '17'
 
 configurations {
@@ -22,6 +22,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.opencsv:opencsv:5.5'
 	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.0'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	compileOnly 'org.projectlombok:lombok'
