@@ -2,7 +2,12 @@
 module.exports = {
   content: ["./src/**/*.{html,js,ts,jsx,tsx,vue}"],
   theme: {
-    extend: {},
+    extend: {
+      padding: {
+        "1/4": "25%",
+        "1/2": "50%",
+      },
+    },
     fontFamily: {
       sans: ["Roboto"],
       serif: ["Roboto"],
