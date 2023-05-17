@@ -7,5 +7,7 @@ import java.util.List;
 public interface StudentRepository {
     List<Student> findAll();
 
+    Student findByName(String name);
+
     void save(Student student);
 }
