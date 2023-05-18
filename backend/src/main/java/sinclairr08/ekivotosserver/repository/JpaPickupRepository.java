@@ -2,10 +2,8 @@ package sinclairr08.ekivotosserver.repository;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import sinclairr08.ekivotosserver.domain.Pickup;
-import sinclairr08.ekivotosserver.domain.Student;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +17,7 @@ public class JpaPickupRepository implements PickupRepository {
     @Override
     public List<Pickup> findAll() {
         return em
-                .createQuery("select p from Pickup p", Pickup.class)
+                .createQuery("select p from Pickup p join fetch p.student", Pickup.class)
                 .getResultList();
     }
 

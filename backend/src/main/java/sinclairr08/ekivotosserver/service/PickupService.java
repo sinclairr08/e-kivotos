@@ -21,7 +21,7 @@ public class PickupService {
     private final PickupRepository pickupRepository;
 
     @Transactional(readOnly = true)
-    public List<PickupDto> findCurrentPickup() {
+    public List<PickupDto> findCurrent() {
         List<Pickup> pickups = pickupRepository.findCurrent(LocalDate.now());
         List<PickupDto> results = new ArrayList<>();
 
