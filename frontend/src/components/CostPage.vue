@@ -58,7 +58,7 @@
         {{ s.name }}
       </button>
     </div>
-    <button @click="selectStudent">학생 선택</button>
+    <button class="mt-4" @click="selectStudent">학생 선택</button>
 
     <div class="mt-4">{{ message }}</div>
   </div>
