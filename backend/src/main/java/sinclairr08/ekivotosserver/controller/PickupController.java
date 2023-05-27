@@ -25,7 +25,7 @@ public class PickupController {
     }
 
     @GetMapping("/current")
-    public List<PickupDto> currentPickupInfo() {
+    public PickupDto currentPickupInfo() {
         return pickupService.findCurrent();
     }
 
