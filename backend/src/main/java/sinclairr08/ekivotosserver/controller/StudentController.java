@@ -17,10 +17,6 @@ import java.util.List;
 @Slf4j
 public class StudentController {
     private final StudentService studentService;
-    @GetMapping(value = "/recruit")
-    public List<StudentRecruitDto> studentsRecruit() {
-        return studentService.findAllRecruit();
-    }
 
     @GetMapping(value = "/cost")
     public List<StudentCostDto> studentsCost() {

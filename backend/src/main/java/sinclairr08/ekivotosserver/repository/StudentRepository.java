@@ -7,6 +7,8 @@ import java.util.List;
 public interface StudentRepository {
     List<Student> findAll();
 
+    List<Student> findNormalOrPickup(List<String> names);
+
     Student findByName(String name);
 
     void save(Student student);

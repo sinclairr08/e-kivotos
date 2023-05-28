@@ -1,6 +1,6 @@
 ﻿name,star,cost,isLimited
-유우카(체육복),3,3,FALSE
-마리(체육복),3,3,FALSE
+유우카(체육복),3,3,TRUE
+마리(체육복),3,3,TRUE
 아코,3,3,FALSE
 히비키,3,4,FALSE
 아스나(바니걸),3,5,FALSE

@@ -6,15 +6,15 @@ import lombok.Getter;
 public class StudentRecruitDto {
     private String name;
     private Integer star;
-    private Boolean isLimited;
+    private Double prob;
 
     public StudentRecruitDto() {
     }
 
-    public StudentRecruitDto(String name, Integer star, Boolean isLimited) {
+    public StudentRecruitDto(String name, Integer star, Double prob) {
         this.name = name;
         this.star = star;
-        this.isLimited = isLimited;
+        this.prob = prob;
     }
 }
 

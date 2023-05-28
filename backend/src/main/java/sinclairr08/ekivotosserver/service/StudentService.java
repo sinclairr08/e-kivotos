@@ -26,16 +26,4 @@ public class StudentService {
         }
         return results;
     }
-
-    @Transactional(readOnly = true)
-    public List<StudentRecruitDto> findAllRecruit() {
-        List<Student> students = studentRepository.findAll();
-        List<StudentRecruitDto> results = new ArrayList<>();
-
-        for(Student s: students) {
-            results.add(new StudentRecruitDto(s.getName(), s.getStar(), s.getIsLimited()));
-        }
-        return results;
-    }
-
 }
