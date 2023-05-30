@@ -1,9 +1,5 @@
 # TODO - 기능
 
-- 모집 기능 수정
-   - 픽업 모집 추가
-   - 업데이트 테이블 이용해서 현재 픽업 캐릭터 추가
-   - 뽑을때까지 돌리기! 추가
 - 로그인 기능 추가
    - 구글, 네이버 사용 및 Spring Security 적용
    - Interceptor 를 통한 구현 먼저 해 보기
@@ -39,6 +35,7 @@
 - AWS Route 53으로 HTTPS 적용
 - GitHub Action 으로 CI / CD
 - Vue 리팩토링
+- API 결과 캐싱해서 DB 및 서버 부담 줄이기
 
 ## 기타
 
