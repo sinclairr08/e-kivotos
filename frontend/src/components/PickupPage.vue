@@ -21,7 +21,10 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { CHANGE_STATUS } from "@/store";
+import { useStore } from "vuex";
 
+const { commit } = useStore();
 const router = useRouter();
 const updates = ref({});
 
@@ -30,9 +33,11 @@ onMounted(async () => {
     const { data } = await axios.get("/api/pickups");
     updates.value = data;
   } catch (err) {
-    if (err.response.status === 500) {
-      await router.push("/500");
-    }
+    commit(CHANGE_STATUS, {
+      code: err.response.status,
+      message: err.response.statusText,
+    });
+    await router.push("/errors");
   }
 });
 </script>

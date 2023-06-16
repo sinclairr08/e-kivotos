@@ -6,12 +6,15 @@ export const UNIT_VALUE = 10000.0;
 export const ADD_COST = "ADD_COST";
 export const INIT_COST = "INIT_COST";
 export const CLICK_CARD = "CLICK_CARD";
+export const CHANGE_STATUS = "CHANGE_STATUS";
 
 export default createStore({
   state: {
     costValue: 0.0,
     cards: [],
     orders: [...Array(6).keys()],
+    statusCode: 200,
+    statusMessage: "OK",
   },
   mutations: {
     [ADD_COST](state, { speed, regen }) {
@@ -37,6 +40,10 @@ export default createStore({
         state.orders[idx] = state.orders[3];
         state.orders.splice(3, 1);
       }
+    },
+    [CHANGE_STATUS](state, { code, message }) {
+      state.statusCode = code;
+      state.statusMessage = message;
     },
   },
 });

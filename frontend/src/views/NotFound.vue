@@ -1,8 +1,18 @@
 <template>
-  <div class="mt-16 flex flex-col space-y-4 items-center">
-    <h1 class="font-bold">404 Not Found</h1>
-    <h1>주소가 잘못되었습니다. 상단의 메인 버튼을 눌러 주세요</h1>
-  </div>
+  <div>처리중</div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRouter } from "vue-router";
+import { onMounted } from "vue";
+import { useStore } from "vuex";
+import { CHANGE_STATUS } from "@/store";
+
+const { commit } = useStore();
+const router = useRouter();
+
+onMounted(() => {
+  commit(CHANGE_STATUS, { code: 404, message: "Not Found" });
+  router.push("/errors");
+});
+</script>

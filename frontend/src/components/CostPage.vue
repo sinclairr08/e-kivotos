@@ -67,7 +67,13 @@
 <script setup>
 import VerticalLine from "./VerticalLine";
 import CharacterCard from "./CharacterCard";
-import { ADD_COST, CLICK_CARD, MAX_VALUE, UNIT_VALUE } from "../store.js";
+import {
+  ADD_COST,
+  CHANGE_STATUS,
+  CLICK_CARD,
+  MAX_VALUE,
+  UNIT_VALUE,
+} from "../store.js";
 import { useStore } from "vuex";
 import { computed, onBeforeMount, ref } from "vue";
 import axios from "axios";
@@ -175,11 +181,11 @@ onBeforeMount(async () => {
     student.value = data;
     message.value = "";
   } catch (err) {
-    if (err.response.status === 500) {
-      await router.push("/500");
-    } else {
-      message.value = err.response.status.toString();
-    }
+    commit(CHANGE_STATUS, {
+      code: err.response.status,
+      message: err.response.statusText,
+    });
+    await router.push("/errors");
   }
 });
 

@@ -49,6 +49,8 @@
 import { onBeforeUnmount, onMounted, ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { CHANGE_STATUS } from "@/store";
+import { useStore } from "vuex";
 
 let selectedData = [];
 let timeouts = [];
@@ -64,6 +66,7 @@ const currentRepeatState = ref("뽑을 때 까지 모집");
 const resultData = ref([]);
 const message = ref("Loading...");
 
+const { commit } = useStore();
 const router = useRouter();
 
 const getCardStyle = (star) => {
@@ -163,11 +166,11 @@ onMounted(async () => {
     selectName(0);
     message.value = "";
   } catch (err) {
-    if (err.response.status === 500) {
-      await router.push("/500");
-    } else {
-      message.value = err.response.status.toString();
-    }
+    commit(CHANGE_STATUS, {
+      code: err.response.status,
+      message: err.response.statusText,
+    });
+    await router.push("/errors");
   }
 });
 

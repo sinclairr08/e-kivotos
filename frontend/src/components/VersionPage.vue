@@ -23,9 +23,12 @@
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import { CHANGE_STATUS } from "@/store";
+import { useStore } from "vuex";
 
 const versions = ref({});
 const message = ref("Loading...");
+const { commit } = useStore();
 const router = useRouter();
 
 onMounted(async () => {
@@ -34,11 +37,11 @@ onMounted(async () => {
     versions.value = data;
     message.value = "";
   } catch (err) {
-    if (err.response.status === 500) {
-      await router.push("/500");
-    } else {
-      message.value = err.response.status.toString();
-    }
+    commit(CHANGE_STATUS, {
+      code: err.response.status,
+      message: err.response.statusText,
+    });
+    await router.push("/errors");
   }
 });
 </script>
