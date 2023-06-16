@@ -8,9 +8,6 @@ public class StudentRecruitDto {
     private Integer star;
     private Double prob;
 
-    public StudentRecruitDto() {
-    }
-
     public StudentRecruitDto(String name, Integer star, Double prob) {
         this.name = name;
         this.star = star;
