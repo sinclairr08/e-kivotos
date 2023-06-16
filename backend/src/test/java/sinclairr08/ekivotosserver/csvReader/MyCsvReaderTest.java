@@ -1,6 +1,7 @@
 package sinclairr08.ekivotosserver.csvReader;
 
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,43 +25,51 @@ public class MyCsvReaderTest {
     @Autowired
     EntityManager em;
 
+    public boolean compare(String filePath, int repoSize) throws Exception {
+        List<String[]> csvResult = MyCsvReader.readData(filePath);
+        return  csvResult.size() == repoSize;
+    }
+
+    @DisplayName("CSV 기록과 DB의 버전 내용이 일치해야 함")
     @Test
+    @Transactional(readOnly = true)
     public void compareVersion() throws Exception {
-        //given
+        // given
         JpaVersionRepository repository = new JpaVersionRepository(em);
 
-        //when
-        List<String[]> csvResult = MyCsvReader.readData("csv/versions.csv");
-        List<Version> repoResult = repository.findAll();
+        // when
+        boolean compareResult = compare("csv/versions.csv", repository.findAll().size());
 
-        //then
-        assertThat(csvResult.size()).isEqualTo(repoResult.size());
+        // then
+        assertThat(compareResult).isTrue();
     }
 
+    @DisplayName("CSV 기록과 DB의 학생 내용이 일치해야 함")
     @Test
+    @Transactional(readOnly = true)
     public void compareStudent() throws Exception {
-        //given
+        // given
         JpaStudentRepository repository = new JpaStudentRepository(em);
 
-        //when
-        List<String[]> csvResult = MyCsvReader.readData("csv/students.csv");
-        List<Student> repoResult = repository.findAll();
+        // when
+        boolean compareResult = compare("csv/students.csv", repository.findAll().size());
 
-        //then
-        assertThat(csvResult.size()).isEqualTo(repoResult.size());
+        // then
+        assertThat(compareResult).isTrue();
     }
 
+    @DisplayName("CSV 기록과 DB의 픽업 내용이 일치해야 함")
     @Test
+    @Transactional(readOnly = true)
     public void comparePickup() throws Exception {
-        //given
+        // given
         JpaPickupRepository repository = new JpaPickupRepository(em);
 
-        //when
-        List<String[]> csvResult = MyCsvReader.readData("csv/pickups.csv");
-        List<Pickup> repoResult = repository.findAll();
+        // when
+        boolean compareResult = compare("csv/pickups.csv", repository.findAll().size());
 
-        //then
-        assertThat(csvResult.size()).isEqualTo(repoResult.size());
+        // then
+        assertThat(compareResult).isTrue();
     }
 
 //    @Test
@@ -75,7 +84,7 @@ public class MyCsvReaderTest {
             String[] line = csvResult.get(i);
 
             Version v = new Version();
-            v.setVersion(line[0], line[1], line[2]);
+            v.setVersion(line[0], LocalDate.parse(line[1]), line[2]);
             repository.save(v);
         }
     }
