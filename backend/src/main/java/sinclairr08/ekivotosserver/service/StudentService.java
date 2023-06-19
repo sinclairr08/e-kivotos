@@ -22,7 +22,7 @@ public class StudentService {
         List<StudentCostDto> results = new ArrayList<>();
 
         for(Student s: students) {
-            results.add(new StudentCostDto(s.getName(), s.getCost()));
+            results.add(new StudentCostDto(s.getName(), s.getCode(), s.getCost()));
         }
         return results;
     }

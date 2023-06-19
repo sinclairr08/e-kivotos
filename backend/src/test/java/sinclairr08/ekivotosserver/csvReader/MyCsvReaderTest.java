@@ -103,7 +103,7 @@ public class MyCsvReaderTest {
             assertThat(repository.findByName(line[0])).isNull();
 
             Student s = new Student();
-            s.setStudent(line[0], Integer.parseInt(line[1]), Integer.parseInt(line[2]), Boolean.parseBoolean(line[3]));
+            s.setStudent(line[0], line[4], Integer.parseInt(line[1]), Integer.parseInt(line[2]), Boolean.parseBoolean(line[3]));
             repository.save(s);
         }
     }

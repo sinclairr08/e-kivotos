@@ -68,7 +68,7 @@ class JpaStudentRepositoryTest {
         int originalSize = studentRepository.findAll().size();
 
         Student student = new Student();
-        student.setStudent("테스트용학생1", 4, 100, true);
+        student.setStudent("테스트용학생1", "CH----", 4, 100, true);
 
         // when
         studentRepository.save(student);

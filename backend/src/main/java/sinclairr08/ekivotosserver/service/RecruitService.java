@@ -78,14 +78,14 @@ public class RecruitService {
             }
 
             currentAllProb += allPercentage[s.getStar()];
-            allProb.add(new StudentRecruitDto(s.getName(), s.getStar(), currentAllProb));
+            allProb.add(new StudentRecruitDto(s.getName(), s.getCode(), s.getStar(), currentAllProb));
 
             if (s.getStar() == 1) {
                 continue;
             }
 
             currentFinalProb += finalPercentage[s.getStar()];
-            finalProb.add(new StudentRecruitDto(s.getName(), s.getStar(), currentFinalProb));
+            finalProb.add(new StudentRecruitDto(s.getName(), s.getCode(), s.getStar(), currentFinalProb));
         }
 
         RecruitDto recruitDto = new RecruitDto("상시 모집", allProb, finalProb);
@@ -129,14 +129,14 @@ public class RecruitService {
             }
 
             currentAllProb += allPercentage[star];
-            allProb.add(new StudentRecruitDto(s.getName(), s.getStar(), currentAllProb));
+            allProb.add(new StudentRecruitDto(s.getName(), s.getCode(), s.getStar(), currentAllProb));
 
             if (s.getStar() == 1) {
                 continue;
             }
 
             currentFinalProb += finalPercentage[star];
-            finalProb.add(new StudentRecruitDto(s.getName(), s.getStar(), currentFinalProb));
+            finalProb.add(new StudentRecruitDto(s.getName(), s.getCode(), s.getStar(), currentFinalProb));
         }
 
         RecruitDto recruitDto = new RecruitDto(name + " 픽업 모집", allProb, finalProb);

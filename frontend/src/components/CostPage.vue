@@ -2,9 +2,9 @@
   <div class="flex flex-col items-center justify-center mt-16">
     <div class="flex items-center justify-center">
       <span
-        class="text-white text-lg bg-sky-700 font-bold px-4 py-2 rounded-full"
-        >{{ cost }}</span
-      >
+        class="text-white text-lg bg-sky-700 font-bold h-12 w-12 rounded-full flex items-center justify-center"
+        >{{ cost }}
+      </span>
       <div class="flex flex-col items-center justify-center">
         <div class="flex space-x-2 mt-2">
           <CharacterCard
@@ -50,12 +50,12 @@
         v-for="(s, i) in student"
         :key="s.name"
         :class="
-          (s.clicked ? 'text-red-600' : 'text-gray-900') +
+          (s.clicked ? 'border-red-600' : 'border-gray-900') +
           ' flex items-center justify-center text-xs m-0.5 border-2 border-gray-900 rounded-md px-0.5'
         "
         @click="clickStudent(i)"
       >
-        {{ s.name }}
+        <SkillPortrait v-bind="s" />
       </button>
     </div>
     <button class="mt-4" @click="selectStudent">학생 선택</button>
@@ -78,6 +78,7 @@ import { useStore } from "vuex";
 import { computed, onBeforeMount, ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import SkillPortrait from "@/components/SkillPortrait.vue";
 
 const { state, commit } = useStore();
 const router = useRouter();

@@ -2,6 +2,7 @@ package sinclairr08.ekivotosserver.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Student {
     private Long id;
 
     private String name;
+    private String code;
     private Integer star;
     private Integer cost;
     private Boolean isLimited;
@@ -21,8 +23,9 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Pickup> pickups = new ArrayList<>();
 
-    public void setStudent(String name, Integer star, Integer cost, Boolean isLimited) {
+    public void setStudent(String name, String code, Integer star, Integer cost, Boolean isLimited) {
         this.name = name;
+        this.code = code;
         this.star = star;
         this.cost = cost;
         this.isLimited = isLimited;
