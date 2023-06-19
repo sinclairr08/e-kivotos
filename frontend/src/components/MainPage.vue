@@ -52,6 +52,16 @@ const officalSites = [
     siteThumbnailUrl:
       "https://webusstatic.yo-star.com/bluearchive_jp_web/favicon.ico",
   },
+  {
+    name: "한섭 트위터 ",
+    siteUrl: "https://twitter.com/KR_BlueArchive",
+    siteThumbnailUrl: "https://abs.twimg.com/favicons/twitter.2.ico",
+  },
+  {
+    name: "일섭 트위터",
+    siteUrl: "https://twitter.com/Blue_ArchiveJP",
+    siteThumbnailUrl: "https://abs.twimg.com/favicons/twitter.2.ico",
+  },
 ];
 const communitySites = [
   {
